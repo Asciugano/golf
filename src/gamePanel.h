@@ -8,6 +8,7 @@ class GamePanel
 private:
     void Reset();
 public:
+    int tiri;
     const float screenWidth = 500;
     const float screenHeigth = 800;
     Ball ball = Ball(250, 400);

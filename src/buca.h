@@ -6,6 +6,7 @@ class Buca
 {
 private:
     float radius;
+    const float maxEntrySpeed = 2.7; 
 public:
     Vector2 position;
 

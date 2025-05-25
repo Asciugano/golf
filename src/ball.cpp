@@ -41,20 +41,20 @@ void Ball::Update()
                 velocity.y = (position.y - dragEnd.y) * 0.1f;
                 dragging = false;
             }
-            
-            Vector2 dir = { mouse.x - position.x, mouse.y - position.y };
+
+            Vector2 dir = {mouse.x - position.x, mouse.y - position.y};
             float len = sqrt(dir.x * dir.x + dir.y * dir.y);
 
-            if(len != 0)
+            if (len != 0)
             {
                 dir.x /= len;
                 dir.y /= len;
 
-                Vector2 perp = { -dir.y, dir.x };
+                Vector2 perp = {-dir.y, dir.x};
 
-                Vector2 base1 = { position.x + perp.x * 10, position.y + perp.y * 10 };
-                Vector2 base2 = { position.x - perp.x * 10, position.y - perp.y * 10 };
-                
+                Vector2 base1 = {position.x + perp.x * 10, position.y + perp.y * 10};
+                Vector2 base2 = {position.x - perp.x * 10, position.y - perp.y * 10};
+
                 DrawTriangle(base2, base1, mouse, RED);
             }
         }
@@ -63,14 +63,19 @@ void Ball::Update()
             position.x += velocity.x;
             position.y += velocity.y;
 
+            if (position.x - radius / 2 <= 0 || position.x + radius / 2 >= GetScreenWidth())
+                velocity.x = -velocity.x;
+            if (position.y - radius / 2 <= 0 || position.y + radius / 2 >= GetScreenHeight())
+                velocity.y = -velocity.y;
+
             velocity.x *= 0.98f;
             velocity.y *= 0.98f;
-            
+
             float speed = sqrt(velocity.x * velocity.y + velocity.y * velocity.y);
-            if(speed < 0.1f)
+            if (speed < 0.1f)
             {
                 isMoving = false;
-                velocity = { 0, 0 };
+                velocity = {0, 0};
             }
             else
                 isMoving = true;

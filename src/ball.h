@@ -7,12 +7,12 @@ private:
     float radius = 10;
     bool isMoving = false;
     
-    Vector2 velocity;
     Vector2 dragEnd;
     bool dragging = false;
 public:
     Vector2 position;
     bool entrata;
+    Vector2 velocity;
 
     Ball(float x, float y);
     ~Ball();

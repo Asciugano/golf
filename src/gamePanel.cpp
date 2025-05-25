@@ -1,6 +1,8 @@
 #include "gamePanel.h"
 
-GamePanel::GamePanel() {}
+GamePanel::GamePanel() {
+    tiri = 0;
+}
 
 GamePanel::~GamePanel() {}
 
@@ -22,4 +24,5 @@ void GamePanel::Update()
 void GamePanel::Reset()
 {
     ball = Ball(250, 400);
+    tiri = 0;
 }
