@@ -1,0 +1,43 @@
+# Compilati
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dylib
+
+# Cartella build
+/build/
+build/
+
+# Backup e swap temporanei
+*~
+*.swp
+*.tmp
+
+# File di log
+*.log
+
+# macOS specifici
+.DS_Store
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# CMake (se in uso)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Xcode se mai usato
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+
+# Raylib examples (se copiati)
+examples/
+
+# Binari
+*.bin
