@@ -14,5 +14,5 @@ public:
     ~Buca();
     
     void Draw();
-    void Update(Ball &ball);
+    bool Update(Ball &ball);
 };

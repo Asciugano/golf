@@ -21,4 +21,6 @@ public:
     void Update();
     
     float GetRadius();
+    
+    bool GetIsMoving();
 };

@@ -87,3 +87,7 @@ float Ball::GetRadius()
 {
     return this->radius;
 }
+
+bool Ball::GetIsMoving() {
+    return isMoving;
+}

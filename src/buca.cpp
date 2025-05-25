@@ -13,7 +13,7 @@ void Buca::Draw()
     DrawCircle(position.x, position.y, radius, BROWN);
 }
 
-void Buca::Update(Ball &ball) 
+bool Buca::Update(Ball &ball) 
 {
     float dx = ball.position.x - position.x;
     float dy = ball.position.y - position.y;
@@ -23,5 +23,7 @@ void Buca::Update(Ball &ball)
 
     if(dist < radius + ball.GetRadius() && speed < maxEntrySpeed) {
         ball.entrata = true;
+        return true;
     }
+    return false;
 }
