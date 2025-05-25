@@ -27,7 +27,7 @@ void GamePanel::Update()
     if (buca.Update(ball))
     {
         round++;
-        message = ("Imbucata con: " + std::to_string(tiri)).c_str();
+        message = tiri > 1 ? ("Imbucata con: " + std::to_string(tiri) + " tiri").c_str() : "Hole in one";
         showText = true;
         Reset();
     }
@@ -57,7 +57,7 @@ void GamePanel::Update()
 void GamePanel::Reset()
 {
     ball = Ball(250, 600);
-    tiri = 1;
+    tiri = 0;
 }
 
 int GamePanel::GetRound()
