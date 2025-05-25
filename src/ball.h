@@ -4,17 +4,20 @@
 
 class Ball {
 private:
-    const float radius = 10;
+    float radius = 10;
     
     Vector2 velocity;
     Vector2 dragEnd;
     bool dragging = false;
 public:
     Vector2 position;
+    bool entrata;
 
     Ball(float x, float y);
     ~Ball();
     
     void Draw();
     void Update();
+    
+    float GetRadius();
 };

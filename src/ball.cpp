@@ -6,44 +6,54 @@ Ball::Ball(float x, float y)
     this->position.y = y;
     dragEnd = position;
     velocity = {0, 0};
+    entrata = false;
 }
 
 Ball::~Ball() {}
 
 void Ball::Draw()
 {
-    DrawCircle(position.x, position.y, radius, WHITE);
+    if (!entrata)
+        DrawCircle(position.x, position.y, radius, WHITE);
 }
 
 void Ball::Update()
 {
-    Vector2 mouse = GetMousePosition();
-
-    float dx = mouse.x - this->position.x;
-    float dy = mouse.y - this->position.y;
-    float distance = sqrt(dx * dx + dy * dy);
-    
-    if(!dragging && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && distance <= radius)
+    if (!entrata)
     {
-        dragging = true;
-    }
-    
-    if(dragging) {
-        if(IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+        Vector2 mouse = GetMousePosition();
+
+        float dx = mouse.x - this->position.x;
+        float dy = mouse.y - this->position.y;
+        float distance = sqrt(dx * dx + dy * dy);
+
+        if (!dragging && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && distance <= radius)
         {
-            dragEnd = GetMousePosition();
-            velocity.x = (position.x - dragEnd.x) * 0.1f;
-            velocity.y = (position.y - dragEnd.y) * 0.1f;
-            dragging = false;
+            dragging = true;
         }
-        DrawLine(position.x, position.y, mouse.x, mouse.y, RED);
-    }
-    else {
-        position.x += velocity.x;
-        position.y += velocity.y;
 
-        velocity.x *= 0.98f;
-        velocity.y *= 0.98f;
-    }
+        if (dragging)
+        {
+            if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+            {
+                dragEnd = GetMousePosition();
+                velocity.x = (position.x - dragEnd.x) * 0.1f;
+                velocity.y = (position.y - dragEnd.y) * 0.1f;
+                dragging = false;
+            }
+            DrawLine(position.x, position.y, mouse.x, mouse.y, RED);
+        }
+        else
+        {
+            position.x += velocity.x;
+            position.y += velocity.y;
 
+            velocity.x *= 0.98f;
+            velocity.y *= 0.98f;
+        }
+    }
+}
+
+float Ball::GetRadius() {
+    return this->radius;
 }

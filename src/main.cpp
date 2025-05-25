@@ -1,19 +1,20 @@
 #include <raylib.h>
-#include "ball.h"
+#include "gamePanel.h"
 
 int main() {
-  InitWindow(500, 800, "GOLF");
-  
-  Ball ball = Ball(250, 400);
+  GamePanel gamePanel;
+
+  InitWindow(gamePanel.screenWidth, gamePanel.screenHeigth, "GOLF");
   
   SetTargetFPS(60);
   
   while(!WindowShouldClose()) {
     BeginDrawing();
     ClearBackground(GREEN);
-    ball.Update();
     
-    ball.Draw();
+    gamePanel.Update();
+
+    gamePanel.Draw();
 
     EndDrawing();
   }
