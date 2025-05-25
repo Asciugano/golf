@@ -7,6 +7,7 @@ private:
     const float radius = 10;
     
     Vector2 velocity;
+    Vector2 dragEnd;
     bool dragging = false;
 public:
     Vector2 position;
