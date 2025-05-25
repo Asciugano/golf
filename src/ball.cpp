@@ -41,7 +41,22 @@ void Ball::Update()
                 velocity.y = (position.y - dragEnd.y) * 0.1f;
                 dragging = false;
             }
-            DrawLine(position.x, position.y, mouse.x, mouse.y, RED);
+            
+            Vector2 dir = { mouse.x - position.x, mouse.y - position.y };
+            float len = sqrt(dir.x * dir.x + dir.y * dir.y);
+
+            if(len != 0)
+            {
+                dir.x /= len;
+                dir.y /= len;
+
+                Vector2 perp = { -dir.y, dir.x };
+
+                Vector2 base1 = { position.x + perp.x * 10, position.y + perp.y * 10 };
+                Vector2 base2 = { position.x - perp.x * 10, position.y - perp.y * 10 };
+                
+                DrawTriangle(base2, base1, mouse, RED);
+            }
         }
         else
         {
@@ -54,6 +69,7 @@ void Ball::Update()
     }
 }
 
-float Ball::GetRadius() {
+float Ball::GetRadius()
+{
     return this->radius;
 }
