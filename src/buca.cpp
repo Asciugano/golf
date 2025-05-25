@@ -10,7 +10,7 @@ Buca::~Buca() {}
 
 void Buca::Draw() 
 {
-    DrawCircle(position.x, position.y, radius, GRAY);
+    DrawCircle(position.x, position.y, radius, BROWN);
 }
 
 void Buca::Update(Ball &ball) 
