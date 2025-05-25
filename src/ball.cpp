@@ -27,7 +27,7 @@ void Ball::Update()
         float dy = mouse.y - this->position.y;
         float distance = sqrt(dx * dx + dy * dy);
 
-        if (!dragging && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && distance <= radius)
+        if (!dragging && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && distance <= radius && !isMoving)
         {
             dragging = true;
         }
@@ -65,6 +65,15 @@ void Ball::Update()
 
             velocity.x *= 0.98f;
             velocity.y *= 0.98f;
+            
+            float speed = sqrt(velocity.x * velocity.y + velocity.y * velocity.y);
+            if(speed < 0.1f)
+            {
+                isMoving = false;
+                velocity = { 0, 0 };
+            }
+            else
+                isMoving = true;
         }
     }
 }

@@ -5,6 +5,7 @@
 class Ball {
 private:
     float radius = 10;
+    bool isMoving = false;
     
     Vector2 velocity;
     Vector2 dragEnd;
