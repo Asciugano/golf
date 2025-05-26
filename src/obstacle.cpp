@@ -29,6 +29,8 @@ void Obstacle::Update(Ball &ball)
 
     if (collisionX && collisionY)
     {
+        ball.SetHitted(true);
+
         float overlapX = std::min(ballRight, obsRight) - std::max(ballLeft, obsLeft);
         float overlapY = std::min(ballBottom, obsBottom) - std::max(ballTop, obsTop);
 

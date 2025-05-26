@@ -5,6 +5,7 @@
 #include "obstacle.h"
 #include "ball.h"
 #include "buca.h"
+#include "reader.h"
 
 class GamePanel
 {

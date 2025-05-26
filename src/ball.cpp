@@ -50,10 +50,16 @@ void Ball::Update()
             position.x += velocity.x;
             position.y += velocity.y;
 
-            if (position.x - radius / 2 <= 0 || position.x + radius / 2 >= GetScreenWidth())
-                velocity.x = -velocity.x;
-            if (position.y - radius / 2 <= 0 || position.y + radius / 2 >= GetScreenHeight())
-                velocity.y = -velocity.y;
+            if ((position.x - radius / 2 <= 0 || position.x + radius / 2 >= GetScreenWidth()) && !hitted)
+                {
+                    hitted = true;
+                    velocity.x = -velocity.x;
+                }
+            if ((position.y - radius / 2 <= 0 || position.y + radius / 2 >= GetScreenHeight()) && !hitted)
+                {
+                    hitted = true;
+                    velocity.y = -velocity.y;
+                }
 
             velocity.x *= 0.98f;
             velocity.y *= 0.98f;
@@ -66,6 +72,18 @@ void Ball::Update()
             }
             else
                 isMoving = true;
+        }
+        if(hitted)
+        {
+            if(hittedTime < 0.1)
+            {
+                hittedTime += GetFrameTime();
+            }
+            else 
+            {
+                hittedTime = 0;
+                hitted = false;
+            }
         }
     }
 }
@@ -101,4 +119,9 @@ void Ball::DrawIndicator()
             DrawTriangle(base2, base1, mouse, RED);
         }
     }
+}
+
+void Ball::SetHitted(bool hitted)
+{
+    this->hitted = hitted;
 }

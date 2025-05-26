@@ -10,6 +10,9 @@ private:
     Vector2 dragEnd;
     bool dragging = false;
     
+    bool hitted = false;
+    float hittedTime = 0;
+    
     void DrawIndicator();
 public:
     Vector2 position;
@@ -25,4 +28,5 @@ public:
     float GetRadius();
     
     bool GetIsMoving();
+    void SetHitted(bool hitted);
 };
