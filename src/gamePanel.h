@@ -15,6 +15,9 @@ private:
     bool showText = false;
     float messageTimer = 0;
     std::string message;
+    
+    void DrawSquaredCourt();
+    void DrawLinearCourt();
 
 public:
     int tiri;

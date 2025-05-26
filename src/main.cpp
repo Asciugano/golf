@@ -12,7 +12,7 @@ int main()
   while (!WindowShouldClose())
   {
     BeginDrawing();
-    ClearBackground(GREEN);
+    ClearBackground(RAYWHITE);
 
     gamePanel.DrawCenteredText(("Round: " + std::to_string(gamePanel.GetRound())).c_str(), 4, 36, WHITE);
 

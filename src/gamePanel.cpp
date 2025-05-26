@@ -10,7 +10,8 @@ GamePanel::~GamePanel() {}
 
 void GamePanel::Draw()
 {
-    if(showText)
+    DrawLinearCourt();
+    if (showText)
     {
         DrawCenteredText(message.c_str(), 400, 36, WHITE);
     }
@@ -31,11 +32,11 @@ void GamePanel::Update()
         showText = true;
         Reset();
     }
-    
-    if(showText)
+
+    if (showText)
     {
         messageTimer += GetFrameTime();
-        if(messageTimer >= 0.90)
+        if (messageTimer >= 0.90)
         {
             showText = false;
             messageTimer = 0;
@@ -43,12 +44,12 @@ void GamePanel::Update()
     }
 
     ball.Update();
-    if(!ball.GetIsMoving() && ballIsMoving) 
+    if (!ball.GetIsMoving() && ballIsMoving)
     {
         ballIsMoving = false;
         tiri++;
     }
-    else if(ball.GetIsMoving())
+    else if (ball.GetIsMoving())
     {
         ballIsMoving = true;
     }
@@ -65,10 +66,34 @@ int GamePanel::GetRound()
     return round;
 }
 
-void GamePanel::DrawCenteredText(const std::string& text, int y, int fontSize, Color color)
+void GamePanel::DrawCenteredText(const std::string &text, int y, int fontSize, Color color)
 {
     int textWidth = MeasureText(text.c_str(), fontSize);
     int x = (GetScreenWidth() - textWidth) / 2;
 
     DrawText(text.c_str(), x, y, fontSize, color);
+}
+
+void GamePanel::DrawSquaredCourt()
+{
+    bool dark = false;
+    for (int x = 0; x < GetScreenWidth(); x += 50)
+    {
+        for(int y = 0; y < GetScreenHeight(); y += 50)
+        {
+            DrawRectangle(x, y, 50, 50, !dark ? GREEN : DARKGREEN);
+            dark = !dark;
+        }
+        dark = !dark;
+    }
+}
+
+void GamePanel::DrawLinearCourt()
+{
+    bool dark = false;
+    for(int x = 0; x < GetScreenWidth(); x += 50)
+    {
+        DrawRectangle(x, 0, 50, GetScreenHeight(), !dark ? GREEN : DARKGREEN);
+        dark = !dark;
+    }
 }

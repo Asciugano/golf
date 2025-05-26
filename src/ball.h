@@ -9,6 +9,8 @@ private:
     
     Vector2 dragEnd;
     bool dragging = false;
+    
+    void DrawIndicator();
 public:
     Vector2 position;
     bool entrata;

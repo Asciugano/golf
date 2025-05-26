@@ -14,7 +14,10 @@ Ball::~Ball() {}
 void Ball::Draw()
 {
     if (!entrata)
+    {
+        DrawIndicator();
         DrawCircle(position.x, position.y, radius, WHITE);
+    }
 }
 
 void Ball::Update()
@@ -40,22 +43,6 @@ void Ball::Update()
                 velocity.x = (position.x - dragEnd.x) * 0.1f;
                 velocity.y = (position.y - dragEnd.y) * 0.1f;
                 dragging = false;
-            }
-
-            Vector2 dir = {mouse.x - position.x, mouse.y - position.y};
-            float len = sqrt(dir.x * dir.x + dir.y * dir.y);
-
-            if (len != 0)
-            {
-                dir.x /= len;
-                dir.y /= len;
-
-                Vector2 perp = {-dir.y, dir.x};
-
-                Vector2 base1 = {position.x + perp.x * 10, position.y + perp.y * 10};
-                Vector2 base2 = {position.x - perp.x * 10, position.y - perp.y * 10};
-
-                DrawTriangle(base2, base1, mouse, RED);
             }
         }
         else
@@ -88,6 +75,30 @@ float Ball::GetRadius()
     return this->radius;
 }
 
-bool Ball::GetIsMoving() {
+bool Ball::GetIsMoving()
+{
     return isMoving;
+}
+
+void Ball::DrawIndicator()
+{
+    if (dragging)
+    {
+        Vector2 mouse = GetMousePosition();
+        Vector2 dir = {mouse.x - position.x, mouse.y - position.y};
+        float len = sqrt(dir.x * dir.x + dir.y * dir.y);
+
+        if (len != 0)
+        {
+            dir.x /= len;
+            dir.y /= len;
+
+            Vector2 perp = {-dir.y, dir.x};
+
+            Vector2 base1 = {position.x + perp.x * 10, position.y + perp.y * 10};
+            Vector2 base2 = {position.x - perp.x * 10, position.y - perp.y * 10};
+
+            DrawTriangle(base2, base1, mouse, RED);
+        }
+    }
 }

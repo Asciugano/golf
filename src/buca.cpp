@@ -11,6 +11,7 @@ Buca::~Buca() {}
 void Buca::Draw() 
 {
     DrawCircle(position.x, position.y, radius, BROWN);
+    DrawCircle(position.x, position.y, 10, DARKBROWN);
 }
 
 bool Buca::Update(Ball &ball) 
