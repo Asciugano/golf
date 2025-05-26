@@ -4,6 +4,10 @@ GamePanel::GamePanel()
 {
     round = 1;
     tiri = 1;
+    for (float y = 100; y < 400; y += 50)
+    {
+        obstacles.push_back(Obstacle({100, y}));
+    }
 }
 
 GamePanel::~GamePanel() {}
@@ -14,6 +18,10 @@ void GamePanel::Draw()
     if (showText)
     {
         DrawCenteredText(message.c_str(), 400, 36, WHITE);
+    }
+    for (Obstacle obstacle : obstacles)
+    {
+        obstacle.Draw(BROWN);
     }
     buca.Draw();
     ball.Draw();
@@ -53,6 +61,10 @@ void GamePanel::Update()
     {
         ballIsMoving = true;
     }
+    for (Obstacle obstacle : obstacles)
+    {
+        obstacle.Update(ball);
+    }
 }
 
 void GamePanel::Reset()
@@ -79,7 +91,7 @@ void GamePanel::DrawSquaredCourt()
     bool dark = false;
     for (int x = 0; x < GetScreenWidth(); x += 50)
     {
-        for(int y = 0; y < GetScreenHeight(); y += 50)
+        for (int y = 0; y < GetScreenHeight(); y += 50)
         {
             DrawRectangle(x, y, 50, 50, !dark ? GREEN : DARKGREEN);
             dark = !dark;
@@ -91,7 +103,7 @@ void GamePanel::DrawSquaredCourt()
 void GamePanel::DrawLinearCourt()
 {
     bool dark = false;
-    for(int x = 0; x < GetScreenWidth(); x += 50)
+    for (int x = 0; x < GetScreenWidth(); x += 50)
     {
         DrawRectangle(x, 0, 50, GetScreenHeight(), !dark ? GREEN : DARKGREEN);
         dark = !dark;

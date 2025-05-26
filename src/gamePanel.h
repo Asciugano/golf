@@ -1,6 +1,8 @@
 #pragma once
 #include <raylib.h>
+#include <vector>
 #include <string>
+#include "obstacle.h"
 #include "ball.h"
 #include "buca.h"
 
@@ -15,6 +17,8 @@ private:
     bool showText = false;
     float messageTimer = 0;
     std::string message;
+    
+    std::vector<Obstacle> obstacles;
     
     void DrawSquaredCourt();
     void DrawLinearCourt();
